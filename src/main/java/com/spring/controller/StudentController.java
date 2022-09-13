@@ -29,4 +29,9 @@ public class StudentController {
     public StudentResponse student(@RequestParam Long id) {
         return studentService.student(id);
     }
+
+    @GetMapping("/student-courses")
+    public StudentDTO getStudentCourses(@RequestParam List<Long> ids) {
+        return  studentService.getStudentCourses(ids);
+    }
 }

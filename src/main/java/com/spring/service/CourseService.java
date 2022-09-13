@@ -23,7 +23,7 @@ public class CourseService {
             CourseDTO courseDTO = new CourseDTO();
             courseDTO.setId(courses.get(i).getId());
             courseDTO.setName(courses.get(i).getName());
-            courseDTO.setCost(courses.get(i).getCost());
+//            courseDTO.setCost(courses.get(i).getCost());
             courseDTOS.add(courseDTO);
         }
         return courseDTOS;
