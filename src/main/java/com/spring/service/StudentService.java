@@ -1,8 +1,7 @@
 package com.spring.service;
 
-import com.spring.model.Student;
-import com.spring.model.StudentDTO;
-import com.spring.model.StudentResponse;
+import com.spring.model.*;
+import com.spring.repo.CourseRepo;
 import com.spring.repo.StudentRepo;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +15,9 @@ public class StudentService {
 
     @Autowired
     private StudentRepo studentRepo;
+
+    @Autowired
+    private CourseRepo courseRepo;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -39,7 +41,29 @@ public class StudentService {
 //        StudentResponse studentResponse = new StudentResponse();
 //        studentResponse.setName(student.getName());
 //        return studentResponse;
-       StudentResponse studentResponse =  modelMapper.map(student, StudentResponse.class);
+        StudentResponse studentResponse = new StudentResponse();
+        studentResponse.setPhone("011111111111111111111111");
+        modelMapper.map(student, studentResponse);
        return studentResponse;
+    }
+
+    public StudentDTO getStudentCourses(List<Long> ids) {
+//        StudentDTO studentDTO = new StudentDTO();
+//        Student student = courseRepo.findStudentByCourseID(ids.get(0));
+        StudentDTO studentDTO = modelMapper.map(courseRepo.findStudentByCourseID(ids.get(0)), StudentDTO.class);
+//        studentDTO.setId(student.getId());
+//        studentDTO.setName(student.getName());
+
+//        List<Course> courses = courseRepo.getCoursesByIds(ids);
+//        for (int i=0; i<courses.size(); i++) {
+////            CourseDTO courseDTO = new CourseDTO();
+////            courseDTO.setId(courses.get(i).getId());
+////            courseDTO.setName(courses.get(i).getName());
+//
+//            CourseDTO courseDTO = modelMapper.map(courses.get(i), CourseDTO.class);
+//            studentDTO.getCourses().add(courseDTO);
+//
+//        }
+        return studentDTO;
     }
 }
